@@ -1,5 +1,4 @@
-//dependancies
-import package.Authentication.java
+import Authentication.Authentication
 import java.util.Scanner;
 import java.lang.InterruptedException;
 
