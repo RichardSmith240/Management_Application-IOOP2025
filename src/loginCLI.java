@@ -1,4 +1,3 @@
-import Authentication.Authentication
 import java.util.Scanner;
 import java.lang.InterruptedException;
 
@@ -10,16 +9,16 @@ class loginCLI{
 
 		//Asking whether the user wants to login with an existing account or create a new account
 		while (auth == false){
-			System.out.println("Would you like to Login or Sign-Up for *xXx* System? [L/s]");
+			System.out.println("Would you like to Log-in or Sign-Up for *xXx* System? [L/s]");
 			char loginSign = scnr.nextLine().charAt(0);
 			loginSign = Character.toLowerCase(loginSign);
 			//checks for option value with login as the default
 			if (loginSign == 'l'){
 				auth = Authentication.Authenticate();
-				System.out.println("You have Successfully Logged in");
+				System.out.println("You have successfully logged-in");
 			} else if (loginSign == 's'){
 				Authentication.SignUp();
-				System.out.println("Congradulation. \nYou have Successfully registered with *xXx* Systems. \nPlease proceed to the login screen.");
+				System.out.println("Congradulation. \nYou have successfully registered with *xXx* Systems. \nPlease proceed to the log-in screen.");
 				clearScreen();
 			} else {
 				System.out.println("Please try again");
