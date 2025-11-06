@@ -13,14 +13,6 @@
 
 ## What we Built
 <details> 
-<summary>Inspirations/Context</summary>
-
-<!-- Add inspiration/context here -->
-
-<p></p>
-</details>
-
-<details> 
   <summary>What it does</summary>
 
 <!-- Contains a User Login page with unique usrID and pwds-->
@@ -69,7 +61,7 @@
   - **CDM line or Terminal**
 	
 ```
-	bash <(curl -fsSL "https://raw.githubusercontent.com/RichardSmith240/Event_Management_Application-IOOP2025/main/scripts/install.sh")
+	bash <(curl -fsSL "https://raw.githubusercontent.com/RichardSmith240/Event_Management_Application-IOOP2025/main/run.sh")
 ```
 	
 </details>
