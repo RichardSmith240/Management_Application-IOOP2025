@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Authentication{
 	//authenication method
 	public static boolean Authenticate(){
@@ -8,11 +10,11 @@ public class Authentication{
 		System.out.println("lol");
 	}
 
-	// Constructor for the array - Vaidehi 
-	private String[] usernames;
-	private String[] passwords;
+	// Array list for the user name and the password - Vaidehi 
+	private ArrayList<String> usernames;
+	private ArrayList<String> passwords;
 	
-	public Authentication(String[] usernames, String[] passwords){
+	public Authentication(ArrayList<String> usernames, ArrayList<String> passwords) {
 	this.usernames = usernames;
 	this.passwords = passwords;
 } 
