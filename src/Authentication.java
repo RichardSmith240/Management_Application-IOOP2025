@@ -8,4 +8,17 @@ public class Authentication{
 	public static void SignUp(){
 		System.out.println("lol");
 	}
-}
+
+	// Constructor for the array - Vaidehi 
+	private String[] usernames;
+	private String[] passwords;
+	
+	public Authentication(String[] usernames, String[] passwords){
+	this.usernames = usernames;
+	this.passwords = passwords;
+} 
+
+
+	}
+
+
