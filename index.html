@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width", initial-scale="1.0">
+    <title> Welcome to ATM </title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/144bab29ca.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="form-box">
+            <h1 id="title">Welcome to ATM</h1>
+            <form id="atmLoginForm">
+                <div class="input-group">
+                    <div class = "input-field">
+                        <i class="fa-solid fa-credit-card"></i>
+                        <input id="cardNumber" type="text" inputmode="numeric" pattern="[0-9]*" placeholder="Card Number">
+                    </div>
+
+                    <div class = "input-field">
+                        <i class="fa-solid fa-lock"></i>
+                        <input id="pin" type="password" inputmode="numeric" pattern="[0-9]*" placeholder="PIN">
+                    </div>
+                </div>
+                <div class="btn-field">
+                    <button type="button" id="loginBtn">Sign in</button>
+                    <button type="button" class="disable" id="clearBtn">Clear</button>
+                </div>
+                <p style="margin-top: 16px; text-align: center;">
+                    Don't have a card and first time user?
+                </p>
+                <div class="signup-field">
+                    <button type="button" id="signupBtn" class="signup-btn">Sign up</button>
+                </div>
+            </form>
+            <form id="applicationForm" style="display:none;">
+                <div class="application-group">
+                    <div class="form-row">
+                        <label for="fullName">Name</label>
+                        <input id="fullName" type="text" placeholder="Enter your name">
+                    </div>
+                    <div class="form-row">
+                        <label for="fathersName">Father's Name</label>
+                        <input id="fathersName" type="text" placeholder="Enter father's name">
+                    </div>
+                    <div class="form-row">
+                        <label for="dob">Date of Birth</label>
+                        <input id="dob" type="date">
+                    </div>
+                    <div class="form-row">
+                        <label>Gender</label>
+                        <div class="inline-options">
+                            <label><input type="radio" name="gender" value="male"> Male</label>
+                            <label><input type="radio" name="gender" value="female"> Female</label>
+                            <label><input type="radio" name="gender" value="other"> Other</label>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <label for="email">Email Address</label>
+                        <input id="email" type="email" placeholder="name@example.com">
+                    </div>
+                    <div class="form-row">
+                        <label for="maritalStatus">Marital Status</label>
+                        <select id="maritalStatus">
+                            <option value="single">Single</option>
+                            <option value="married">Married</option>
+                            <option value="divorced">Divorced</option>
+                            <option value="widowed">Widowed</option>
+                        </select>
+                    </div>
+                    <div class="form-row span-2">
+                        <label for="address">Address</label>
+                        <textarea id="address" rows="3" placeholder="Street address"></textarea>
+                    </div>
+                    <div class="form-row">
+                        <label for="city">City</label>
+                        <input id="city" type="text" placeholder="Enter city">
+                    </div>
+                    <div class="form-row">
+                        <label for="pincode">Pin code</label>
+                        <input id="pincode" type="text" inputmode="numeric" pattern="[0-9]*" placeholder="Enter pin code">
+                    </div>
+                    <div class="form-row">
+                        <label for="state">State</label>
+                        <input id="state" type="text" placeholder="Enter state">
+                    </div>
+                </div>
+                <div class="btn-field">
+                    <button type="button" id="submitApplicationBtn">Submit</button>
+                    <button type="button" class="disable" id="backToLoginBtn">Back</button>
+                </div>
+            </form>
+            <form id="page2Form" style="display:none;">
+                <div class="application-group">
+                    <div class="form-row span-4">
+                        <label class="section-label">Account Type</label>
+                        <div class="inline-options">
+                            <label><input type="radio" name="accountType" value="savings"> Savings</label>
+                            <label><input type="radio" name="accountType" value="current"> Current</label>
+                            <label><input type="radio" name="accountType" value="fixed_deposit"> Fixed Deposit</label>
+                            <label><input type="radio" name="accountType" value="recurring_deposit"> Recurring Deposit</label>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <label for="pin2">PIN</label>
+                        <input id="pin2" type="password" inputmode="numeric" pattern="[0-9]{4}" maxlength="4" placeholder="Enter 4-digit PIN">
+                    </div>
+                    <div class="form-row span-2">
+                        <label class="section-label">Services Required</label>
+                        <div class="inline-options">
+                            <label><input type="checkbox" name="services" value="atm_card"> ATM Card</label>
+                            <label><input type="checkbox" name="services" value="internet_banking"> Internet Banking</label>
+                            <label><input type="checkbox" name="services" value="mobile_banking"> Mobile Banking</label>
+                            <label><input type="checkbox" name="services" value="email_alerts"> Email Alerts</label>
+                            <label><input type="checkbox" name="services" value="cheque_book"> Cheque Book</label>
+                            <label><input type="checkbox" name="services" value="e_statement"> E-statement</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="btn-field">
+                    <button type="button" id="page2SubmitBtn">Submit</button>
+                    <button type="button" class="disable" id="page2CancelBtn">Cancel</button>
+                </div>
+            </form>
+            <form id="depositForm" style="display:none;">
+                <div class="application-group">
+                    <div class="form-row span-4">
+                        <label class="section-label">How much amount do you want to deposit?</label>
+                        <input id="depositAmount" type="number" placeholder="Enter amount" min="1" step="0.01">
+                    </div>
+                </div>
+                <div class="btn-field">
+                    <button type="button" id="depositBtn">Deposit</button>
+                    <button type="button" class="disable" id="depositBackBtn">Back</button>
+                </div>
+            </form>
+        </div>
+    </div>
+<script>
+let loginBtn = document.getElementById("loginBtn");
+let clearBtn = document.getElementById("clearBtn");
+let signupBtn = document.getElementById("signupBtn");
+let cardNumberInput = document.getElementById("cardNumber");
+let pinInput = document.getElementById("pin");
+let applicationForm = document.getElementById("applicationForm");
+let atmLoginForm = document.getElementById("atmLoginForm");
+let title = document.getElementById("title"); 
+let backToLoginBtn = document.getElementById("backToLoginBtn");
+let page2Form = document.getElementById("page2Form");
+let submitApplicationBtn = document.getElementById("submitApplicationBtn");
+let page2CancelBtn = document.getElementById("page2CancelBtn");
+let page2SubmitBtn = document.getElementById("page2SubmitBtn");
+let depositForm = document.getElementById("depositForm");
+let depositBtn = document.getElementById("depositBtn");
+let depositBackBtn = document.getElementById("depositBackBtn");
+let depositAmountInput = document.getElementById("depositAmount");
+
+clearBtn.onclick = function(){
+    cardNumberInput.value = "";
+    pinInput.value = "";
+    cardNumberInput.focus();
+}
+
+// TODO: Wire up real sign in logic
+loginBtn.onclick = function(){
+    // Placeholder for sign-in submission
+}
+
+// TODO: Navigate to a real sign-up flow when available
+signupBtn.onclick = function(){
+    atmLoginForm.style.display = "none";
+    applicationForm.style.display = "block";
+    title.innerHTML = "Application Form";
+}
+
+backToLoginBtn.onclick = function(){
+    applicationForm.style.display = "none";
+    atmLoginForm.style.display = "block";
+    title.innerHTML = "Welcome to ATM";
+}
+
+submitApplicationBtn.onclick = function(){
+    applicationForm.style.display = "none";
+    page2Form.style.display = "block";
+    title.innerHTML = "Account Setup";
+}
+
+page2CancelBtn.onclick = function(){
+    page2Form.style.display = "none";
+    applicationForm.style.display = "block";
+    title.innerHTML = "Application Form";
+}
+
+function maskCardNumberDisplay(digits){
+    var len = digits.length;
+    if(len <= 4){
+        return digits;
+    }
+    var masked = 'X'.repeat(Math.max(0, len - 4)) + digits.slice(-4);
+    return masked.replace(/(.{4})/g, '$1 ').trim();
+}
+
+function generateCardNumber(){
+    var digits = '';
+    for(var i=0;i<16;i++){
+        digits += Math.floor(Math.random()*10);
+    }
+    return digits.replace(/(.{4})/g, '$1-').replace(/-$/, '');
+}
+
+page2SubmitBtn.onclick = function(){
+    var generatedCard = generateCardNumber();
+    var pinVal = (document.getElementById('pin2').value || '').trim();
+    alert('Card Number: ' + generatedCard + '\nPIN: ' + pinVal);
+    // After clicking OK, show deposit form
+    setTimeout(function(){
+        page2Form.style.display = "none";
+        depositForm.style.display = "block";
+        title.innerHTML = "Deposit Amount";
+    }, 100);
+}
+
+depositBackBtn.onclick = function(){
+    depositForm.style.display = "none";
+    page2Form.style.display = "block";
+    title.innerHTML = "Account Setup";
+}
+
+depositBtn.onclick = function(){
+    var amount = depositAmountInput.value;
+    if(amount && parseFloat(amount) > 0){
+        alert('Amount of $' + amount + ' deposited successfully!');
+        // Reset form and go back to login
+        depositAmountInput.value = "";
+        depositForm.style.display = "none";
+        atmLoginForm.style.display = "block";
+        title.innerHTML = "Welcome to ATM";
+    } else {
+        alert('Please enter a valid amount');
+    }
+}
+</script>
+</body>
+</html>
