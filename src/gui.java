@@ -6,8 +6,8 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.scene.control.Label;
-import.javafx.scene.TextField;
-import.javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.scene.control.PasswordField;
 import java.util.ArrayList;
 /* *
 * /these are some other imports we could use after we have the base gui
@@ -23,16 +23,16 @@ public class gui extends Application {
         ArrayList<String> usernames = new ArrayList<String>();
         ArrayList<String> passwords = new ArrayList<String>();
         usernames.add("user1");
-        passwords.add("abcd1234"):
+        passwords.add("abcd1234");
 
         auth = new Authentication(usernames, passwords);
-        
-        //Username nd label text fields
-        Label userlabel = new Label("Username:");
+
+        //Username and label text fields
+        Label userLabel = new Label("Username:");
         TextField userTextField = new TextField();
         
         //Password
-        Label passlabel = new Label("Password:");
+        Label passLabel = new Label("Password:");
         PasswordField passField = new PasswordField();
 
         //button
