@@ -9,8 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.PasswordField;
 import java.util.ArrayList;
-/* *
-* /these are some other imports we could use after we have the base gui
+/* these are some other imports we could use after we have the base gui
 import javafx.geometry.Pos;         
 import javafx.scene.text.Font;      
 import javafx.scene.paint.Color;
