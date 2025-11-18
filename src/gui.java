@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class gui extends Application {
 
     @Override
-    public void start(Stage stage) {
+      public void start(Stage stage) {
         //test data for usernames and passwords
         primaryStage.setTitle("Login GUI");
         //test data for usernames and passwords
@@ -25,8 +25,38 @@ public class gui extends Application {
     
     //Sign in page
     private Scene createSigninScene(Stage stage){
+        Label title = new Label("Sign In"));
+        Label userLabel = new Label("Username:");
+        TextField userField = new TextField();
+        Label passLabel = new Label("Password:");
+        PasswordField passField = new PasswordField();
+        Label messageLabel = new Label();
 
-
+        // create buttons
+        Button signInBtn = new Button("Sign In");
+        Button signUpBtn = new Button("Sign Up");
+        signInBtn.setOnAction(new EventHandler<ActionEvent>(){
+            @Override
+            public void handle(ActionEvent event){
+                String username = userField.getText();
+                String password = passField.getText();
+                if(signin(username,password)){
+                    stage.setScene(successScene());
+                } else {
+                    messageLabel.setText("Invalid username or password. Please try again.");
+                }
+            }
+        });
+        goToSignUpBtn.setOnAction(new EventHandler<ActionEvent>(){
+            @Override
+            public void handle(ActionEvent event){
+                stage.setScene(createSignupScene(stage));
+            }
+        });
+        VBox layout = new Vbox (10);
+        layout.getChildren().addAll(title, userLabel, userField, passLabel, passField, signInBtn, signUpBtn, messageLabel);
+        layout.setPadding(new Insets(20));      
+        return new Scene(layout, 300, 350);
     }
 
     //Sign up page
@@ -63,6 +93,35 @@ public class gui extends Application {
 
     //success page
 private Scene successScene(){
+    Label successLabel = new Label("Your Login was Successful.");
+    Vbox layout = new VBox(10);
+    layout.getChildren().add(successLabel);
+    layout.setPadding(new Insets(20));
+    layout.setAlignment(Pos.CENTER);
+    return new Scene(layout, 300, 200);
+
 
 }
-       
+//Backend logic for sign in
+private boolean signin(String username, String password){
+    for(int i=0; i<usernames.size(); i++){
+        if(usernames.get(i).equals(username) && passwords.get(i).equals(password)){
+            return true;
+        }
+    }
+    return false;
+}
+//Backend logic for sign up
+private boolean signup(String username, String password){
+    if(usernames.contains(username)){
+        return false;
+    }
+    usernames.add(username);
+    passwords.add(password);
+    return true;
+}
+public static void main(String[] args) {
+    launch(args);   
+
+}
+}    
