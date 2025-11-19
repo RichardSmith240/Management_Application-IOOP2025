@@ -1,51 +1,75 @@
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Authentication {
-	private static ArrayList<String> usernames = new ArrayList<String>();
-	private static ArrayList<String> passwords = new ArrayList<String>();
 
-	static {
-		usernames.add("user1");
-		passwords.add("abcd1234");
-	}
+    private static ArrayList<String> usernames = new ArrayList<String>();
+    private static ArrayList<String> passwords = new ArrayList<String>();
+    private static boolean initialized = false;
 
-	public static boolean Authenticate() {
-		Scanner scnr = new Scanner(System.in);
-		System.out.print("Enter username: ");
-		String username = scnr.nextLine();
-		System.out.print("Enter password: ");
-		String password = scnr.nextLine();
+    public Authentication() {
+        if (!initialized) {
+            usernames.add("user1");
+            passwords.add("abcd1234");
+            initialized = true;
+        }
+    }
 
-		for (int i = 0; i < usernames.size(); i++) {
-			if (usernames.get(i).equals(username) && passwords.get(i).equals(password)) {
-				System.out.println("Login successful! Welcome, " + username + ".");
-				return true;
-			}
-		}
-		System.out.println("Invalid username or password.");
-		return false;
-	}
+    /**
+     * Attempts to log in with given username and password.
+     * Returns:
+     *  "SUCCESS"        - login ok
+     *  "EMPTY"          - username or password is empty
+     *  "USER_NOT_FOUND" - username does not exist
+     *  "WRONG_PASSWORD" - password does not match
+     */
+    public String login(String username, String password) {
+        if (username == null || password == null ||
+            username.trim().isEmpty() || password.isEmpty()) {
+            return "EMPTY";
+        }
 
-	public static void SignUp() {
-		Scanner scnr = new Scanner(System.in);
-		System.out.print("Choose a username: ");
-		String username = scnr.nextLine().trim();
-		System.out.print("Choose a password: ");
-		String password = scnr.nextLine();
+        username = username.trim();
 
-		if (username.isEmpty() || password.isEmpty()) {
-			System.out.println("Username and password cannot be empty.");
-			return;
-		}
+        int usernameIndex = -1;
+        for (int i = 0; i < usernames.size(); i++) {
+            if (usernames.get(i).equals(username)) {
+                usernameIndex = i;
+                break;
+            }
+        }
 
-		if (usernames.contains(username)) {
-			System.out.println("Username already exists. Please choose another one.");
-			return;
-		}
+        if (usernameIndex == -1) {
+            return "USER_NOT_FOUND";
+        }
 
-		usernames.add(username);
-		passwords.add(password);
-		System.out.println("Account created successfully! Please log in.");
-	}
+        if (passwords.get(usernameIndex).equals(password)) {
+            return "SUCCESS";
+        } else {
+            return "WRONG_PASSWORD";
+        }
+    }
+
+    /**
+     * Attempts to create a new account.
+     * Returns:
+     *  "SUCCESS"        - account created
+     *  "EMPTY"          - username or password is empty
+     *  "USERNAME_TAKEN" - username already exists
+     */
+    public String signUp(String username, String password) {
+        if (username == null || password == null ||
+            username.trim().isEmpty() || password.isEmpty()) {
+            return "EMPTY";
+        }
+
+        username = username.trim();
+
+        if (usernames.contains(username)) {
+            return "USERNAME_TAKEN";
+        }
+
+        usernames.add(username);
+        passwords.add(password);
+        return "SUCCESS";
+    }
 }
