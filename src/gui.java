@@ -102,26 +102,5 @@ private Scene successScene(){
 
 
 }
-//Backend logic for sign in
-private boolean signin(String username, String password){
-    for(int i=0; i<usernames.size(); i++){
-        if(usernames.get(i).equals(username) && passwords.get(i).equals(password)){
-            return true;
-        }
-    }
-    return false;
-}
-//Backend logic for sign up
-private boolean signup(String username, String password){
-    if(usernames.contains(username)){
-        return false;
-    }
-    usernames.add(username);
-    passwords.add(password);
-    return true;
-}
-public static void main(String[] args) {
-    launch(args);   
 
 }
-}    
