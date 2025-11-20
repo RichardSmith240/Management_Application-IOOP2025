@@ -2,76 +2,120 @@ import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
-import java.geometry.Pos;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.VBox;
+import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import javafx.scene.layout.Vbox;
-import java.util.ArrayList;
 
 public class gui extends Application {
 
+    // Use the Authentication class for all login / sign-up logic
+    private Authentication auth = new Authentication();
+
     @Override
-      public void start(Stage stage) {
-        //test data for usernames and passwords
-        primaryStage.setTitle("Login GUI");
-        //test data for usernames and passwords
-        usernames.add("user1");
-        passwords.add("abcd1234");
-        stage.setTitle("Login System");
+    public void start(Stage stage) {
+        stage.setTitle("Login System - *xXx* System");
         stage.setScene(createLoginScene(stage));
         stage.show();
     }
-    
-    //Sign in page
-    private Scene createSigninScene(Stage stage){
-        Label title = new Label("Sign In"));
+
+    private Scene createLoginScene(Stage stage) {
+        Label title = new Label("Welcome to *xXx* System");
+        title.setFont(new Font(20));
+
         Label userLabel = new Label("Username:");
         TextField userField = new TextField();
+        userField.setPromptText("Enter username");
+
         Label passLabel = new Label("Password:");
         PasswordField passField = new PasswordField();
-        Label messageLabel = new Label();
+        passField.setPromptText("Enter password");
 
-        // create buttons
-        Button signInBtn = new Button("Sign In");
-        Button signUpBtn = new Button("Sign Up");
-        signInBtn.setOnAction(new EventHandler<ActionEvent>(){
+        Label messageLabel = new Label();
+        messageLabel.setTextFill(Color.RED);
+
+        Button loginBtn = new Button("Sign In");
+        loginBtn.setPrefWidth(120);
+        loginBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
-            public void handle(ActionEvent event){
+            public void handle(ActionEvent event) {
                 String username = userField.getText();
                 String password = passField.getText();
-                if(signin(username,password)){
-                    stage.setScene(successScene());
-                } else {
-                    messageLabel.setText("Invalid username or password. Please try again.");
+
+                String result = auth.login(username, password);
+
+                switch (result) {
+                    case "EMPTY":
+                        messageLabel.setTextFill(Color.RED);
+                        messageLabel.setText("Please enter both username and password.");
+                        break;
+                    case "USER_NOT_FOUND":
+                        messageLabel.setTextFill(Color.RED);
+                        messageLabel.setText("Username not found. Please sign up first.");
+                        break;
+                    case "WRONG_PASSWORD":
+                        messageLabel.setTextFill(Color.RED);
+                        messageLabel.setText("Password is incorrect. Please try again.");
+                        break;
+                    case "SUCCESS":
+                        messageLabel.setText("");
+                        stage.setScene(createWelcomeScene(username.trim(), stage));
+                        break;
                 }
             }
         });
-        goToSignUpBtn.setOnAction(new EventHandler<ActionEvent>(){
+
+        Button signUpBtn = new Button("Sign Up");
+        signUpBtn.setPrefWidth(120);
+        signUpBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
-            public void handle(ActionEvent event){
+            public void handle(ActionEvent event) {
                 stage.setScene(createSignupScene(stage));
             }
         });
-        VBox layout = new Vbox (10);
-        layout.getChildren().addAll(title, userLabel, userField, passLabel, passField, signInBtn, signUpBtn, messageLabel);
-        layout.setPadding(new Insets(20));      
-        return new Scene(layout, 300, 350);
+
+        HBox buttonBox = new HBox(10);
+        buttonBox.setAlignment(Pos.CENTER);
+        buttonBox.getChildren().addAll(loginBtn, signUpBtn);
+
+        VBox layout = new VBox(15);
+        layout.setAlignment(Pos.CENTER);
+        layout.setPadding(new Insets(40));
+        layout.getChildren().addAll(
+                title,
+                userLabel, userField,
+                passLabel, passField,
+                buttonBox,
+                messageLabel
+        );
+
+        return new Scene(layout, 400, 400);
     }
 
-    //Sign up page
-    private Scene createSignupScene(Stage stage){
-        Label title=new Label("Sign Up");
-        Label userLabel= new Label("Create Username:");
-        TextField userField=new TextField();
-        Label passLabel=new Label("Create Password:");
-        PasswordField passField=new PasswordField();
-        Label messageLabel=new Label();
-        Button createBtn=new Button("Create Account");
-        Button backBtn=new Button("Back to Sign In");
+    private Scene createSignupScene(Stage stage) {
+        Label title = new Label("Sign Up");
+        title.setFont(new Font(20));
 
-        createBtn.setOnAction(new EventHandler<ActionEvent>(){
+        Label userLabel = new Label("Create Username:");
+        TextField userField = new TextField();
+        userField.setPromptText("Enter username");
+
+        Label passLabel = new Label("Create Password:");
+        PasswordField passField = new PasswordField();
+        passField.setPromptText("Enter password");
+
+        Label messageLabel = new Label();
+        messageLabel.setTextFill(Color.RED);
+
+        Button createBtn = new Button("Create Account");
+        createBtn.setPrefWidth(150);
+        createBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
+<<<<<<< HEAD
             public void handle(ActionEvent event){
                 String username=userField.getText();
                 String password=passField.getText();
@@ -79,28 +123,87 @@ public class gui extends Application {
                     stage.setScene(successScene());
                 } else {
                     messageLabel.setText("Username already exists. Please choose another one.");
+=======
+            public void handle(ActionEvent event) {
+                String username = userField.getText();
+                String password = passField.getText();
+
+                String result = auth.signUp(username, password);
+
+                switch (result) {
+                    case "EMPTY":
+                        messageLabel.setTextFill(Color.RED);
+                        messageLabel.setText("Username and password cannot be empty.");
+                        break;
+                    case "USERNAME_TAKEN":
+                        messageLabel.setTextFill(Color.RED);
+                        messageLabel.setText("Username already exists. Please choose another.");
+                        break;
+                    case "SUCCESS":
+                        messageLabel.setTextFill(Color.GREEN);
+                        messageLabel.setText("Account created successfully! Please sign in.");
+                        userField.clear();
+                        passField.clear();
+                        break;
+>>>>>>> c64c168272039e296b93a5c5851dcad716cb07c7
                 }
             }
         });
 
-        VBox layout = new Vbox (10);
-        layout.getChildren().addAll(title, userLabel, userField, passLabel, passField, createBtn, backBtn, messageLabel);
-        layout.setPadding(new Insets(20));
+        Button backBtn = new Button("Back to Sign In");
+        backBtn.setPrefWidth(150);
+        backBtn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                stage.setScene(createLoginScene(stage));
+            }
+        });
+
+        VBox layout = new VBox(15);
         layout.setAlignment(Pos.CENTER);
-        return new Scene(layout, 300, 350);
+        layout.setPadding(new Insets(40));
+        layout.getChildren().addAll(
+                title,
+                userLabel, userField,
+                passLabel, passField,
+                createBtn,
+                backBtn,
+                messageLabel
+        );
+
+        return new Scene(layout, 400, 400);
     }
 
+    private Scene createWelcomeScene(String username, Stage stage) {
+        Label welcomeTitle = new Label("Welcome to *xXx* System!");
+        welcomeTitle.setFont(new Font(24));
+        welcomeTitle.setTextFill(Color.GREEN);
 
-    //success page
-private Scene successScene(){
-    Label successLabel = new Label("Your Login was Successful.");
-    Vbox layout = new VBox(10);
-    layout.getChildren().add(successLabel);
-    layout.setPadding(new Insets(20));
-    layout.setAlignment(Pos.CENTER);
-    return new Scene(layout, 300, 200);
+        Label welcomeUser = new Label("Welcome, " + username + "!");
+        welcomeUser.setFont(new Font(18));
 
+        Button logoutBtn = new Button("Logout");
+        logoutBtn.setPrefWidth(120);
+        logoutBtn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                stage.setScene(createLoginScene(stage));
+            }
+        });
 
-}
+        VBox layout = new VBox(20);
+        layout.setAlignment(Pos.CENTER);
+        layout.setPadding(new Insets(40));
+        layout.getChildren().addAll(
+                welcomeTitle,
+                welcomeUser,
+                logoutBtn
+        );
 
+        return new Scene(layout, 400, 400);
+    }
+
+    public static void main(String[] args) {
+        launch(args);
+    }
 }
