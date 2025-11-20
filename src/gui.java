@@ -78,7 +78,7 @@ public class gui extends Application {
                 if(signup(username,password)){
                     stage.setScene(successScene());
                 } else {
-                    messageLabel.setText("Username already exists. Please choose another.");
+                    messageLabel.setText("Username already exists. Please choose another one.");
                 }
             }
         });
