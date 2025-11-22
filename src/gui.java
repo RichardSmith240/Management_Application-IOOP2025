@@ -115,7 +115,7 @@ public class gui extends Application {
         createBtn.setPrefWidth(150);
         createBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
-<<<<<<< HEAD
+
             public void handle(ActionEvent event){
                 String username=userField.getText();
                 String password=passField.getText();
@@ -145,7 +145,7 @@ public class gui extends Application {
                         userField.clear();
                         passField.clear();
                         break;
->>>>>>> c64c168272039e296b93a5c5851dcad716cb07c7
+
                 }
             }
         });
