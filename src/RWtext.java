@@ -16,16 +16,19 @@ public class RWtext {
     private static final String uPWD= "userPassword.txt";
 
     public static void read() {
-		System.out.println("Reading Files in | " + dbDir);
-
+		String unRead = "None";
 		if (check(uName) == true) {
 			userNames = readFile(uName);
 			if (check(uPWD) == true) {
 				PWDs = readFile(uPWD);
+			} else {
+				unRead = uPWD;
 			}
-		}else {
-			System.out.println("Unable to Read");
+		} else {
+			unRead = uName;
 		}
+		System.out.println("Unable to Read File | " + unRead);
+		
 	}
 	
 	private static boolean check(String target) {
@@ -33,7 +36,6 @@ public class RWtext {
 		File targetFile = new File(dbDir+target);
 
 		//temp lines for testing
-		System.out.println("Searching for File | " + new java.io.File(dbDir+target).getAbsolutePath());
 		if (targetFile.exists() && dbDirFile.isDirectory()) {
 			// temp lines for testing
 			System.out.println(targetFile);
