@@ -1,10 +1,4 @@
-import java.util.ArrayList;
-
 public class Authentication {
-
-    private static ArrayList<String> usernames = RWtext.userNames;
-    private static ArrayList<String> passwords = RWtext.PWDs;
-    private static boolean initialized = false;
 
     public String login(String username, String password) {
         RWtext.read();
@@ -17,8 +11,8 @@ public class Authentication {
 
         int usernameIndex = -1;
 
-        for (int i = 0; i < usernames.size(); i++) {
-            if (usernames.get(i).equals(username)) {
+        for (int i = 0; i < RWtext.userNames.size(); i++) {
+            if (RWtext.userNames.get(i).equals(username)) {
                 usernameIndex = i;
                 break;
             }
@@ -26,7 +20,7 @@ public class Authentication {
         if (usernameIndex <= -1) {
             return "USER_NOT_FOUND";
         }
-        if (passwords.get(usernameIndex).equals(password)) {
+        if (RWtext.PWDs.get(usernameIndex).equals(password)) {
             return "SUCCESS";
         } else {
             return "WRONG_PASSWORD";
@@ -34,6 +28,7 @@ public class Authentication {
     }
 
     public String signUp(String username, String password) {
+        RWtext.read();
         if (username == null || password == null ||
             username.trim().isEmpty() || password.isEmpty()) {
             return "EMPTY";
@@ -41,13 +36,13 @@ public class Authentication {
 
         username = username.trim();
 
-        if (usernames.contains(username)) {
+        if (RWtext.userNames.contains(username)) {
             return "USERNAME_TAKEN";
         }
 		
 		RWtext.write(username, password);
-        usernames.add(username);
-        passwords.add(password);
+        RWtext.userNames.add(username);
+        RWtext.PWDs.add(password);
         return "SUCCESS";
     }
 }
