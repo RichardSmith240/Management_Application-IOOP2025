@@ -13,7 +13,6 @@ import javafx.stage.Stage;
 
 public class gui extends Application {
 
-    // Use the Authentication class for all login / sign-up logic
     private Authentication auth = new Authentication();
 
     @Override
@@ -115,15 +114,6 @@ public class gui extends Application {
         createBtn.setPrefWidth(150);
         createBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
-
-            public void handle(ActionEvent event){
-                String username=userField.getText();
-                String password=passField.getText();
-                if(signup(username,password)){
-                    stage.setScene(successScene());
-                } else {
-                    messageLabel.setText("Username already exists. Please choose another one.");
-=======
             public void handle(ActionEvent event) {
                 String username = userField.getText();
                 String password = passField.getText();
@@ -145,7 +135,6 @@ public class gui extends Application {
                         userField.clear();
                         passField.clear();
                         break;
-
                 }
             }
         });

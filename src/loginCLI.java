@@ -26,7 +26,6 @@ class loginCLI {
 				String password = scnr.nextLine();
 
 				String result = auth.login(username, password);
-				//clearScreen();
 				switch (result) {
 					case "SUCCESS":
 						System.out.println("========================================");

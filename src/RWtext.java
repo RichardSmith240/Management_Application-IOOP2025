@@ -5,7 +5,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.io.File;
-//import java.io.FilenameFilter;
 
 public class RWtext {
 
@@ -18,10 +17,7 @@ public class RWtext {
     private static final String uPWD= "userPassword.txt";
 
     public static void read() {
-	
-		//temp lines for testing
 		System.out.println("Reading Files in : " + new java.io.File(dbDir).getAbsolutePath());
-		//
 
 		if (check(uName) == true) {
 			userNames = readFile(uName);
