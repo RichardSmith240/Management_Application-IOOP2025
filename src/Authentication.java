@@ -51,20 +51,16 @@ public class Authentication {
      */
 
     public String signUp(String username, String password) {
-        if (username == null || password == null ||
-            username.trim().isEmpty() || password.isEmpty()) {
+		if (username == null || password == null || username.trim().isEmpty() || password.trim().isEmpty()) {
             return "EMPTY";
-        }
-
-        username = username.trim();
-
-        if (usernames.contains(username)) {
+		/*
+		} if (usernames.contains(username)) {
             return "USERNAME_TAKEN";
-        }
-		
-		RWtext.write(username, password);
-        usernames.add(username);
-        passwords.add(password);
-        return "SUCCESS";
+		*/
+        } else {
+			RWtext.userNames.add(username);
+			RWtext.PWDs.add(password);
+			return "SUCCESS";
+		}
     }
 }

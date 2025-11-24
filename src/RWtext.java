@@ -1,7 +1,7 @@
 import java.io.FileReader;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileWriter;
-import java.io.PrintWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.io.File;
@@ -20,27 +20,34 @@ public class RWtext {
     public static void read() {
 	
 		//temp lines for testing
-		System.out.println("Working dir: " + workingDir);
 		System.out.println("Reading Files in : " + new java.io.File(dbDir).getAbsolutePath());
 		//
 
-		check(uName);
-		check(uPWD);
-    }
+		if (check(uName) == true) {
+			userNames = readFile(uName);
+			if (check(uPWD) == true) {
+				PWDs = readFile(uPWD);
+			}
+		}else {
+			System.out.print("Unable to Read");
+		}
+	}
 	
-	private static void check(String target) {
+	private static boolean check(String target) {
 		File dbDirFile = new File(dbDir);
 		File targetFile = new File(dbDir+target);
 
 		//temp lines for testing
-		System.out.println("Reading : " + new java.io.File(dbDir).getAbsolutePath());
+		System.out.println("Reading File: " + new java.io.File(dbDir+target).getAbsolutePath());
 		if (targetFile.exists() && dbDirFile.isDirectory()) {
 			// temp lines for testing
 			System.out.println(targetFile);
-			userNames = readFile(target);
+			return true;
 		} else {
-			createFile.makeFile(dbDir, uName);
+			System.out.println("File Created | "+target);
+			createFile.makeFile(dbDir, target);
 			read();
+			return false;
 		}
 	}
 
@@ -53,9 +60,7 @@ public class RWtext {
 
             while (true) {
                 String line = reader.readLine();
-
                 if (line == null || line.trim().isEmpty()) break;
-
                 lines.add(line);
             }
 
@@ -68,20 +73,22 @@ public class RWtext {
         }
         return lines;
     }
+	public static void write(String newUser, String newPwd) {
+	    userNames.add(newUser);
+	    PWDs.add(newPwd);
 
-    public static void write(String newUser, String newPwd) {
-        writeLine(uName, newUser);
-        writeLine(uPWD, newPwd);
-    }
+	    writeAllLines(userNames, dbDir + uName);
+	    writeAllLines(PWDs, dbDir + uPWD);
+	}
 
-    private static void writeLine(String dir, String text) {
-        try (FileWriter fw = new FileWriter(dir, true);
-             PrintWriter pw = new PrintWriter(fw)) {
-
-            pw.println(text);
-
-        } catch (IOException e) {
-            System.err.println("Error writing file | " + e.getMessage());
-        }
-    }
+	private static void writeAllLines(ArrayList<String> list, String dir) {
+		try (BufferedWriter writer = new BufferedWriter(new FileWriter(dir))) {
+		    for (String content : list) {
+		        writer.write(content);
+		        writer.newLine();
+		    }
+		} catch (IOException e) {
+		    e.printStackTrace();
+		}
+	}
 }
