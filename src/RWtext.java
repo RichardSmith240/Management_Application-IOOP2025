@@ -23,35 +23,26 @@ public class RWtext {
 		System.out.println("Working dir: " + workingDir);
 		System.out.println("Reading Files in : " + new java.io.File(dbDir).getAbsolutePath());
 		//
-		
-		File dbDirFile = new File(dbDir);
-		File uNameFile = new File(dbDir+uName);
-		File uPWDFile = new File(dbDir+uPWD);
+
+		check(uName);
+		check(uPWD);
+    }
 	
+	private static void check(String target) {
+		File dbDirFile = new File(dbDir);
+		File targetFile = new File(dbDir+target);
+
 		//temp lines for testing
 		System.out.println("Reading : " + new java.io.File(dbDir).getAbsolutePath());
-		if (uNameFile.exists() && dbDirFile.isDirectory()) {
+		if (targetFile.exists() && dbDirFile.isDirectory()) {
 			// temp lines for testing
-			System.out.println(uNameFile);
-			userNames = readFile(uName);
+			System.out.println(targetFile);
+			userNames = readFile(target);
 		} else {
 			createFile.makeFile(dbDir, uName);
 			read();
 		}
-	
-		//temp lines for testing
-		System.out.println("Reading : " + new java.io.File(dbDir).getAbsolutePath());
-		if (uPWDFile.exists() && dbDirFile.isDirectory()) {
-			// temp lines for testing
-			System.out.println(uPWDFile);
-			userNames = readFile(uName);
-		} else {
-			createFile.makeFile(dbDir, uPWD);
-			read();
-		}
-        userNames = readFile(uName);
-        PWDs = readFile(uPWD);
-    }
+	}
 
     private static ArrayList<String> readFile(String dir) {
         ArrayList<String> lines = new ArrayList<>();
