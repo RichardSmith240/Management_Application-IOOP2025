@@ -8,10 +8,12 @@ class loginCLI {
 	
 		boolean authenticated = false;
 
+		clearScreen();
 		while (!authenticated) {
 			System.out.println("========================================");
 			System.out.println("    Welcome to *xXx* System!");
 			System.out.println("Would you like to Log-in or Sign-Up? [L/s]");
+			System.out.println("========================================");
 			String input = scnr.nextLine();
 			if (input.isEmpty()) {
 				System.out.println("Please enter L to log-in or S to sign-up.");
