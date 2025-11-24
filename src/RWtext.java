@@ -4,6 +4,8 @@ import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.io.File;
+//import java.io.FilenameFilter;
 
 public class RWtext {
 
@@ -11,7 +13,7 @@ public class RWtext {
     public static ArrayList<String> PWDs = new ArrayList<>();
 
 	static String workingDir = System.getProperty("user.dir");
-	private static final String dbDir = System.getProperty("user.dir")+ "src/dbs/"; 
+	private static final String dbDir = System.getProperty("user.dir")+ "/src/dbs/"; 
     private static final String uName= "userName.txt";
     private static final String uPWD= "userPassword.txt";
 
@@ -21,7 +23,32 @@ public class RWtext {
 		System.out.println("Working dir: " + workingDir);
 		System.out.println("Reading Files in : " + new java.io.File(dbDir).getAbsolutePath());
 		//
-
+		
+		File dbDirFile = new File(dbDir);
+		File uNameFile = new File(dbDir+uName);
+		File uPWDFile = new File(dbDir+uPWD);
+	
+		//temp lines for testing
+		System.out.println("Reading : " + new java.io.File(dbDir).getAbsolutePath());
+		if (uNameFile.exists() && dbDirFile.isDirectory()) {
+			// temp lines for testing
+			System.out.println(uNameFile);
+			userNames = readFile(uName);
+		} else {
+			createFile.makeFile(dbDir, uName);
+			read();
+		}
+	
+		//temp lines for testing
+		System.out.println("Reading : " + new java.io.File(dbDir).getAbsolutePath());
+		if (uPWDFile.exists() && dbDirFile.isDirectory()) {
+			// temp lines for testing
+			System.out.println(uPWDFile);
+			userNames = readFile(uName);
+		} else {
+			createFile.makeFile(dbDir, uPWD);
+			read();
+		}
         userNames = readFile(uName);
         PWDs = readFile(uPWD);
     }
