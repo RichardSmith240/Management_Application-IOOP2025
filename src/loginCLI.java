@@ -8,8 +8,12 @@ class loginCLI {
 	
 		boolean authenticated = false;
 
+		//clearScreen();
 		while (!authenticated) {
-			System.out.println("Would you like to Log-in or Sign-Up for *xXx* System? [L/s]");
+			System.out.println("========================================");
+			System.out.println("    Welcome to *xXx* System!");
+			System.out.println("Would you like to Log-in or Sign-Up? [L/s]");
+			System.out.println("========================================");
 			String input = scnr.nextLine();
 			if (input.isEmpty()) {
 				System.out.println("Please enter L to log-in or S to sign-up.");
@@ -53,9 +57,9 @@ class loginCLI {
 				switch (result) {
 					case "SUCCESS":
 						System.out.println("Congratulations!");
-				System.out.println("You have successfully registered with *xXx* Systems.");
-				System.out.println("Please proceed to the log-in screen.");
-				break;
+						System.out.println("You have successfully registered with *xXx* Systems.");
+						System.out.println("Please proceed to the log-in screen.");
+						break;
 					case "EMPTY":
 						System.out.println("Username and password cannot be empty.");
 						break;
