@@ -10,18 +10,20 @@ public class RWtext {
     public static ArrayList<String> userNames = new ArrayList<>();
     public static ArrayList<String> PWDs = new ArrayList<>();
 
-    private static final String uNameDir = System.getProperty("user.dir")+"/dbs/userName.txt";
-    private static final String uPWDDir = System.getProperty("user.dir")+"/dbs/userPassword.txt";
+	static String workingDir = System.getProperty("user.dir");
+	private static final String dbDir = System.getProperty("user.dir")+ "src/dbs/"; 
+    private static final String uName= "userName.txt";
+    private static final String uPWD= "userPassword.txt";
 
     public static void read() {
 	
 		//temp lines for testing
-		System.out.println("Working dir: " + System.getProperty("user.dir"));
-		System.out.println("Reading: " + new java.io.File(uNameDir).getAbsolutePath());
+		System.out.println("Working dir: " + workingDir);
+		System.out.println("Reading Files in : " + new java.io.File(dbDir).getAbsolutePath());
 		//
 
-        userNames = readFile(uNameDir);
-        PWDs = readFile(uPWDDir);
+        userNames = readFile(uName);
+        PWDs = readFile(uPWD);
     }
 
     private static ArrayList<String> readFile(String dir) {
@@ -50,8 +52,8 @@ public class RWtext {
     }
 
     public static void write(String newUser, String newPwd) {
-        writeLine(uNameDir, newUser);
-        writeLine(uPWDDir, newPwd);
+        writeLine(uName, newUser);
+        writeLine(uPWD, newPwd);
     }
 
     private static void writeLine(String dir, String text) {
