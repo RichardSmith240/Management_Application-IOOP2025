@@ -8,7 +8,7 @@ class loginCLI {
 	
 		boolean authenticated = false;
 
-		clearScreen();
+		//clearScreen();
 		while (!authenticated) {
 			System.out.println("========================================");
 			System.out.println("    Welcome to *xXx* System!");

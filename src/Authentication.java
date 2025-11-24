@@ -25,8 +25,7 @@ public class Authentication {
         }
         if (usernameIndex <= -1) {
             return "USER_NOT_FOUND";
-        }
-        if (passwords.get(usernameIndex).equals(password)) {
+        } if (passwords.get(usernameIndex).equals(password)) {
             return "SUCCESS";
         } else {
             return "WRONG_PASSWORD";
