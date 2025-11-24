@@ -11,13 +11,12 @@ public class RWtext {
     public static ArrayList<String> userNames = new ArrayList<>();
     public static ArrayList<String> PWDs = new ArrayList<>();
 
-	static String workingDir = System.getProperty("user.dir");
 	private static final String dbDir = System.getProperty("user.dir")+ "/src/dbs/"; 
     private static final String uName= "userName.txt";
     private static final String uPWD= "userPassword.txt";
 
     public static void read() {
-		System.out.println("Reading Files in : " + new java.io.File(dbDir).getAbsolutePath());
+		System.out.println("Reading Files in | " + dbDir);
 
 		if (check(uName) == true) {
 			userNames = readFile(uName);
@@ -25,7 +24,7 @@ public class RWtext {
 				PWDs = readFile(uPWD);
 			}
 		}else {
-			System.out.print("Unable to Read");
+			System.out.println("Unable to Read");
 		}
 	}
 	
@@ -34,7 +33,7 @@ public class RWtext {
 		File targetFile = new File(dbDir+target);
 
 		//temp lines for testing
-		System.out.println("Reading File: " + new java.io.File(dbDir+target).getAbsolutePath());
+		System.out.println("Searching for File | " + new java.io.File(dbDir+target).getAbsolutePath());
 		if (targetFile.exists() && dbDirFile.isDirectory()) {
 			// temp lines for testing
 			System.out.println(targetFile);
@@ -46,7 +45,6 @@ public class RWtext {
 			return false;
 		}
 	}
-
     private static ArrayList<String> readFile(String dir) {
         ArrayList<String> lines = new ArrayList<>();
         BufferedReader reader = null;
