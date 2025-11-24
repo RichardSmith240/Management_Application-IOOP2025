@@ -36,7 +36,8 @@ public class RWtext {
 		File targetFile = new File(dbDir+target);
 
 		//temp lines for testing
-		if (targetFile.exists() && dbDirFile.isDirectory()) {
+		//if (targetFile.exists() && dbDirFile.isDirectory()) {
+		if (targetFile.exists()) {
 			// temp lines for testing
 			System.out.println(targetFile);
 			return true;
