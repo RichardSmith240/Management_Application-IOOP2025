@@ -6,15 +6,6 @@ public class Authentication {
     private static ArrayList<String> passwords = RWtext.PWDs;
     private static boolean initialized = false;
 
-    /*
-     * Attempts to log in with given username and password.
-     * Returns:
-     *  "SUCCESS"        - login ok
-     *  "EMPTY"          - username or password is empty
-     *  "USER_NOT_FOUND" - username does not exist
-     *  "WRONG_PASSWORD" - password does not match
-     */
-
     public String login(String username, String password) {
         RWtext.read();
 		if (username == null || password == null ||
@@ -41,14 +32,6 @@ public class Authentication {
             return "WRONG_PASSWORD";
         }
     }
-
-    /*
-     * Attempts to create a new account.
-     * Returns:
-     *  "SUCCESS"        - account created
-     *  "EMPTY"          - username or password is empty
-     *  "USERNAME_TAKEN" - username already exists
-     */
 
     public String signUp(String username, String password) {
         if (username == null || password == null ||

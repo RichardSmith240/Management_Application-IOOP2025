@@ -5,7 +5,6 @@ import java.io.PrintWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.io.File;
-//import java.io.FilenameFilter;
 
 public class RWtext {
 
@@ -18,11 +17,8 @@ public class RWtext {
     private static final String uPWD= "userPassword.txt";
 
     public static void read() {
-	
-		//temp lines for testing
 		System.out.println("Working dir: " + workingDir);
 		System.out.println("Reading Files in : " + new java.io.File(dbDir).getAbsolutePath());
-		//
 
 		check(uName);
 		check(uPWD);
@@ -32,15 +28,28 @@ public class RWtext {
 		File dbDirFile = new File(dbDir);
 		File targetFile = new File(dbDir+target);
 
-		//temp lines for testing
 		System.out.println("Reading : " + new java.io.File(dbDir).getAbsolutePath());
-		if (targetFile.exists() && dbDirFile.isDirectory()) {
-			// temp lines for testing
+		
+		if (!dbDirFile.exists()) {
+			dbDirFile.mkdirs();
+		}
+		
+		if (!targetFile.exists()) {
+			try {
+				targetFile.createNewFile();
+			} catch (IOException e) {
+				System.err.println("Error creating file | " + e.getMessage());
+			}
+		}
+		
+		if (targetFile.exists()) {
 			System.out.println(targetFile);
-			userNames = readFile(target);
-		} else {
-			createFile.makeFile(dbDir, uName);
-			read();
+			ArrayList<String> lines = readFile(dbDir+target);
+			if (target.equals(uName)) {
+				userNames = lines;
+			} else if (target.equals(uPWD)) {
+				PWDs = lines;
+			}
 		}
 	}
 
@@ -70,12 +79,12 @@ public class RWtext {
     }
 
     public static void write(String newUser, String newPwd) {
-        writeLine(uName, newUser);
-        writeLine(uPWD, newPwd);
+        writeLine(dbDir + uName, newUser);
+        writeLine(dbDir + uPWD, newPwd);
     }
 
-    private static void writeLine(String dir, String text) {
-        try (FileWriter fw = new FileWriter(dir, true);
+    private static void writeLine(String filePath, String text) {
+        try (FileWriter fw = new FileWriter(filePath, true);
              PrintWriter pw = new PrintWriter(fw)) {
 
             pw.println(text);

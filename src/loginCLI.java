@@ -24,7 +24,6 @@ class loginCLI {
 				String password = scnr.nextLine();
 
 				String result = auth.login(username, password);
-				//clearScreen();
 				switch (result) {
 					case "SUCCESS":
 						System.out.println("========================================");
@@ -54,10 +53,9 @@ class loginCLI {
 				switch (result) {
 					case "SUCCESS":
 						System.out.println("Congratulations!");
-						System.out.println("You have successfully registered with *xXx* Systems.");
-						System.out.println("Please proceed to the log-in screen.");
-						//clearScreen();
-						break;
+				System.out.println("You have successfully registered with *xXx* Systems.");
+				System.out.println("Please proceed to the log-in screen.");
+				break;
 					case "EMPTY":
 						System.out.println("Username and password cannot be empty.");
 						break;
