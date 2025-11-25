@@ -55,7 +55,7 @@ public class gui extends Application { //gui classhis means the gui class inheri
                     message.setText("");//success message
                     stage.setScene(createWelcomeScene(username.trim(), stage));//switch to welcome scene
                     break;//default
-=======
+                    
 
     private Scene createLoginScene(Stage stage) {
         Label title = new Label("Welcome to *xXx* System");
