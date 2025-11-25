@@ -8,8 +8,7 @@ public class Authentication {
 
     public String login(String username, String password) {
         RWtext.read();
-		if (username == null || password == null ||
-            username.trim().isEmpty() || password.isEmpty()) {
+		if (username == null || password == null || username.trim().isEmpty() || password.isEmpty()) {
             return "EMPTY";
         }
 
