@@ -1,6 +1,10 @@
 import javafx.application.Application;
+<<<<<<< HEAD
 
 import javafx.geometry.Insets;//javafx imports
+=======
+import javafx.geometry.Insets;
+>>>>>>> ab57c6684ffaa72f3cb4a97a4994bcb329aee195
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -23,6 +27,7 @@ public class gui extends Application { //gui classhis means the gui class inheri
 //var5 → label for messages (errors like “wrong password”).
 //var6 → login button
 
+<<<<<<< HEAD
     //login scene 
     private Scene createLoginScene(Stage stage) { 
         Label title = new Label("Welcome to *xXx* System"); //Creates a label that displays text at the top of the screen.
@@ -50,6 +55,35 @@ public class gui extends Application { //gui classhis means the gui class inheri
                     message.setText("");//success message
                     stage.setScene(createWelcomeScene(username.trim(), stage));//switch to welcome scene
                     break;//default
+=======
+
+    private Scene createLoginScene(Stage stage) {
+        Label title = new Label("Welcome to *xXx* System");
+        TextField usernameField = new TextField();
+        usernameField.setPromptText("Username");
+        PasswordField passwordField = new PasswordField();
+        passwordField.setPromptText("Password");
+        Label message = new Label();
+        Button loginBtn = new Button("Sign In");
+        loginBtn.setOnAction(e -> {
+            String username = usernameField.getText();
+            String password = passwordField.getText();
+            String result = auth.login(username, password);
+            switch (result) {
+                case "EMPTY":
+                    message.setText("Please enter both username and password.");
+                    break;
+                case "USER_NOT_FOUND":
+                    message.setText("Username not found. Please sign up first.");
+                    break;
+                case "WRONG_PASSWORD":
+                    message.setText("Password is incorrect. Please try again.");
+                    break;
+                case "SUCCESS":
+                    message.setText("");
+                    stage.setScene(createWelcomeScene(username.trim(), stage));
+                    break;
+>>>>>>> ab57c6684ffaa72f3cb4a97a4994bcb329aee195
             }
         });
         Button signupBtn = new Button("Sign Up");
@@ -69,51 +103,63 @@ public class gui extends Application { //gui classhis means the gui class inheri
         PasswordField passwordField = new PasswordField();
         passwordField.setPromptText("Create password");
         Label message = new Label();
+    // Sign Up 
+    // Here is the sign up scene creation method
+     private Scene createSignupScene(Stage stage) { 
+        Label title = new Label("Sign Up"); 
+        TextField usernameField = new TextField(); // Username input field
+        usernameField.setPromptText("Create username"); // Placeholder text
+        PasswordField passwordField = new PasswordField(); // Password input field
+        passwordField.setPromptText("Create password"); // Placeholder text
+        Label message = new Label(); 
+
         Button createBtn = new Button("Create Account");
-        createBtn.setOnAction(e -> {
+        createBtn.setOnAction(e -> { // Handle account creation
             String username = usernameField.getText();
             String password = passwordField.getText();
             String result = auth.signUp(username, password);
-            switch (result) {
+            switch (result) { // Display appropriate messages based on the result
+                // the cases for all possible outcomes
                 case "EMPTY":
-                    message.setTextFill(Color.RED);
+                    message.setTextFill(Color.RED); // Set text color to red for errors
                     message.setText("Username and password cannot be empty.");
                     break;
                 case "USERNAME_TAKEN":
-                    message.setTextFill(Color.RED);
+                    message.setTextFill(Color.RED); // Same thing as above
                     message.setText("Username already exists. Please choose another.");
                     break;
                 case "SUCCESS":
-                    message.setTextFill(Color.GREEN);
+                    message.setTextFill(Color.GREEN); //Green for success
                     message.setText("Account created successfully! Please sign in.");
                     usernameField.clear();
                     passwordField.clear();
-                    break;
+                    break; 
             }
         });
+        // Back to login button
         Button backBtn = new Button("Back to Sign In");
         backBtn.setOnAction(e -> stage.setScene(createLoginScene(stage)));
-
-        VBox layout = new VBox(10, title, usernameField, passwordField, createBtn, backBtn, message);
-        layout.setPadding(new Insets(20));
-        layout.setAlignment(Pos.CENTER);
-        return new Scene(layout, 400, 400);
+        // Layout setup 
+        VBox layout = new VBox(10, title, usernameField, passwordField, createBtn, backBtn, message); // Vertical layout with spacing
+        layout.setPadding(new Insets(20)); // Padding around the layout
+        layout.setAlignment(Pos.CENTER);    // Center alignment
+        return new Scene(layout, 400, 400); // Return the scene with specified dimensions
     }
 
-    // welcom
+
     private Scene createWelcomeScene(String username, Stage stage) {
         Label welcomeTitle = new Label("Welcome to *xXx* System!");
         Label welcomeUser = new Label("Welcome, " + username + "!");
         Button logoutBtn = new Button("Logout");
         logoutBtn.setOnAction(e -> stage.setScene(createLoginScene(stage)));
 
-        VBox layout = new VBox(15, welcomeTitle, welcomeUser, logoutBtn);
+        VBox layout = new VBox(15, welcomeTitle, welcomeUser, logoutBtn);// same thing as before
         layout.setPadding(new Insets(20));
         layout.setAlignment(Pos.CENTER);
         return new Scene(layout, 400, 400);
     }
 
-    public static void main(String[] args) {
-        launch();
+    public static void main(String[] args) { // Main method to launch the application
+        launch(); //this is so the javafx application can actually run
     }
 }
