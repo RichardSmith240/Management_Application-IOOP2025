@@ -17,11 +17,6 @@ public class gui extends Application { //gui classhis means the gui class inheri
         stage.setScene(createLoginScene(stage)); //Sets the initial scene to the login screen.
         stage.show(); //show stage
     }
-//var2 → login title label.
-//var3 → username input field.
-//var4 → password input field (hides text).
-//var5 → label for messages (errors like “wrong password”).
-//var6 → login button
 
     //login scene 
     private Scene createLoginScene(Stage stage) { 
@@ -113,14 +108,14 @@ public class gui extends Application { //gui classhis means the gui class inheri
         return new Scene(layout, 400, 400); // Return the scene with specified dimensions
     }
 
-
+    //welcome scene
     private Scene createWelcomeScene(String username, Stage stage) {
-        Label welcomeTitle = new Label("Welcome to *xXx* System!");
-        Label welcomeUser = new Label("Welcome, " + username + "!");
-        Button logoutBtn = new Button("Logout");
+        Label welcomeTitle = new Label("Welcome to *xXx* System!"); //Creates a text label that appears at the top of the welcome screen.
+        Label welcomeUser = new Label("Welcome, " + username + "!"); //Displays the specific user's name. personalized 
+        Button logoutBtn = new Button("Logout"); //triggers when the user clicks the button
         logoutBtn.setOnAction(e -> stage.setScene(createLoginScene(stage)));
 
-        VBox layout = new VBox(15, welcomeTitle, welcomeUser, logoutBtn);// same thing as before
+        VBox layout = new VBox(15, welcomeTitle, welcomeUser, logoutBtn);//vertical layout with spacing between
         layout.setPadding(new Insets(20));
         layout.setAlignment(Pos.CENTER);
         return new Scene(layout, 400, 400);
