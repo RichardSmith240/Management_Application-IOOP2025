@@ -69,50 +69,49 @@ public class gui extends Application {
         });
 
         Button signUpBtn = new Button("Sign Up");
-        signUpBtn.setPrefWidth(120);
+        signUpBtn.setPrefWidth(120); // Set preferred width for consistency
         signUpBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                stage.setScene(createSignupScene(stage));
+                stage.setScene(createSignupScene(stage));  // Switch to sign-up scene
             }
         });
 
-        HBox buttonBox = new HBox(10);
-        buttonBox.setAlignment(Pos.CENTER);
+        HBox buttonBox = new HBox(10); 
         buttonBox.getChildren().addAll(loginBtn, signUpBtn);
 
         VBox layout = new VBox(15);
-        layout.setAlignment(Pos.CENTER);
+        layout.setAlignment(Pos.CENTER); 
         layout.setPadding(new Insets(40));
-        layout.getChildren().addAll(
-                title,
+        layout.getChildren().addAll( 
                 userLabel, userField,
                 passLabel, passField,
                 buttonBox,
                 messageLabel
         );
 
-        return new Scene(layout, 400, 400);
+        return new Scene(layout, 400, 400); // Set scene size
     }
-
+// the actual sign-up scene creation
     private Scene createSignupScene(Stage stage) {
         Label title = new Label("Sign Up");
         title.setFont(new Font(20));
-
+// create username field
         Label userLabel = new Label("Create Username:");
         TextField userField = new TextField();
         userField.setPromptText("Enter username");
-
+// create password field
         Label passLabel = new Label("Create Password:");
         PasswordField passField = new PasswordField();
-        passField.setPromptText("Enter password");
+        passField.setPromptText("Enter password"); //placeholder text
 
         Label messageLabel = new Label();
-        messageLabel.setTextFill(Color.RED);
+        messageLabel.setTextFill(Color.RED); // default color for messages
 
         Button createBtn = new Button("Create Account");
         createBtn.setPrefWidth(150);
-        createBtn.setOnAction(new EventHandler<ActionEvent>() {
+        
+        createBtn.setOnAction(new EventHandler<ActionEvent>() { // handle account creation
             @Override
             public void handle(ActionEvent event) {
                 String username = userField.getText();
