@@ -19,7 +19,7 @@ public class gui extends Application {
         stage.show();
     }
 
-    // ---------------- LOGIN SCREEN ----------------
+    //login scene
     private Scene createLoginScene(Stage stage) {
         Label title = new Label("Welcome to *xXx* System");
         TextField usernameField = new TextField();
@@ -57,7 +57,7 @@ public class gui extends Application {
         return new Scene(layout, 400, 400);
     }
 
-    // ---------------- SIGN UP SCREEN ----------------
+    //sign up
     private Scene createSignupScene(Stage stage) {
         Label title = new Label("Sign Up");
         TextField usernameField = new TextField();
@@ -96,7 +96,7 @@ public class gui extends Application {
         return new Scene(layout, 400, 400);
     }
 
-    // ---------------- WELCOME SCREEN ----------------
+    // welcom
     private Scene createWelcomeScene(String username, Stage stage) {
         Label welcomeTitle = new Label("Welcome to *xXx* System!");
         Label welcomeUser = new Label("Welcome, " + username + "!");
