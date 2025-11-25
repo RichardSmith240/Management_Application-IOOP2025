@@ -26,7 +26,7 @@ public class Authentication {
             return "WRONG_PASSWORD";
         }
     }
-
+    
     public String signUp(String username, String password) {
         RWtext.read();
         if (username == null || password == null ||
