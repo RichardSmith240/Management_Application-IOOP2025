@@ -1,10 +1,6 @@
 import javafx.application.Application;
-<<<<<<< HEAD
 
 import javafx.geometry.Insets;//javafx imports
-=======
-import javafx.geometry.Insets;
->>>>>>> ab57c6684ffaa72f3cb4a97a4994bcb329aee195
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -27,7 +23,6 @@ public class gui extends Application { //gui classhis means the gui class inheri
 //var5 → label for messages (errors like “wrong password”).
 //var6 → login button
 
-<<<<<<< HEAD
     //login scene 
     private Scene createLoginScene(Stage stage) { 
         Label title = new Label("Welcome to *xXx* System"); //Creates a label that displays text at the top of the screen.
@@ -56,34 +51,6 @@ public class gui extends Application { //gui classhis means the gui class inheri
                     stage.setScene(createWelcomeScene(username.trim(), stage));//switch to welcome scene
                     break;//default
                     
-
-    private Scene createLoginScene(Stage stage) {
-        Label title = new Label("Welcome to *xXx* System");
-        TextField usernameField = new TextField();
-        usernameField.setPromptText("Username");
-        PasswordField passwordField = new PasswordField();
-        passwordField.setPromptText("Password");
-        Label message = new Label();
-        Button loginBtn = new Button("Sign In");
-        loginBtn.setOnAction(e -> {
-            String username = usernameField.getText();
-            String password = passwordField.getText();
-            String result = auth.login(username, password);
-            switch (result) {
-                case "EMPTY":
-                    message.setText("Please enter both username and password.");
-                    break;
-                case "USER_NOT_FOUND":
-                    message.setText("Username not found. Please sign up first.");
-                    break;
-                case "WRONG_PASSWORD":
-                    message.setText("Password is incorrect. Please try again.");
-                    break;
-                case "SUCCESS":
-                    message.setText("");
-                    stage.setScene(createWelcomeScene(username.trim(), stage));
-                    break;
->>>>>>> ab57c6684ffaa72f3cb4a97a4994bcb329aee195
             }
         });
         Button signupBtn = new Button("Sign Up");
@@ -92,7 +59,7 @@ public class gui extends Application { //gui classhis means the gui class inheri
         VBox layout = new VBox(10, title, usernameField, passwordField, loginBtn, signupBtn, message);
         layout.setPadding(new Insets(20));
         layout.setAlignment(Pos.CENTER);
-        return new Scene(layout, 400, 400); Creates a screen sized 400×400.
+        return new Scene(layout, 400, 400); //Creates a screen sized 400×400.
     }
 
     //sign up
